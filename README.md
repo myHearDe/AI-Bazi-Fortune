@@ -1,3 +1,6 @@
+【ai八字算命PHP网站源码演示-通过对接DEEPSEEK api实现流式输出】 
+https://www.bilibili.com/video/BV1nnWezgEsn/?share_source=copy_web&vd_source=dd99361baf92e05ccc328d50a74d61e5
+
 # AI 玄学（八字分析）
 
 一个前后端一体的示例应用，用于将出生信息转发到后端，再由后端以 SSE 流式调用推理服务，返回“常规分析”或“大运分析”等结构化结果。项目强调：提示词由后端统一构造，支持前端覆盖；已移除前/后端的续写拼接逻辑，确保一次性调用、一次性输出。
