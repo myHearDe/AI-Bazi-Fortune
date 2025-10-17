@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>专业八字分析系统 · DeepSeek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo"></div>
+      <div>
+        <div class="title">专业八字分析系统</div>
+        <div class="subtitle">基于 DeepSeek · 支持流式输出与真太阳时调整</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <form id="bazi-form">
+          <div class="section-title">出生信息</div>
+          <div class="field">
+            <label class="label">公历生日</label>
+            <input class="input" type="date" id="date" required />
+          </div>
+          <div class="field row">
+            <div style="flex:1">
+              <label class="label">时辰（24小时制）</label>
+              <input class="input" type="time" id="time" required />
+            </div>
+            <div style="width: 220px">
+              <label class="label">时区</label>
+              <select class="select" id="timezone">
+                <option value="Asia/Shanghai">中国标准时间 (UTC+8)</option>
+                <option value="Asia/Taipei">台北 (UTC+8)</option>
+                <option value="Asia/Hong_Kong">香港 (UTC+8)</option>
+                <option value="Asia/Tokyo">东京 (UTC+9)</option>
+                <option value="UTC">UTC (世界时)</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">地区（城市或经纬度）</label>
+            <input class="input" id="region" placeholder="例如：北京市，或 39.9042,116.4074" />
+            <div class="hint" id="regionHint" style="display:none">示例：北京市；或使用经纬度格式如 39.9042, 116.4074</div>
+            <div class="error-text" id="regionError"></div>
+          </div>
+          <div class="field">
+            <label class="label">性别</label>
+            <select class="select" id="gender">
+              <option value="男" selected>男</option>
+              <option value="女">女</option>
+            </select>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" id="trueSolar" />
+            <label for="trueSolar">使用真太阳时（基于地区经度与时区进行修正）</label>
+          </div>
+          <details class="hint" style="margin-top:6px">
+            <summary>关于真太阳时校正</summary>
+            <div>如不确定是否需要真太阳时校正，建议保持关闭或在分析结果中对比说明。</div>
+          </details>
+
+          <div class="form-actions">
+            <button class="btn" type="submit" id="submitBtn">开始分析</button>
+            <button class="btn secondary" type="button" id="copyBtn">复制结果</button>
+            <button class="btn secondary" type="button" id="resetBtn">重置输入</button>
+            <div class="status" id="status">
+              <div class="dot" id="statusDot"></div>
+              <span id="statusText">待机</span>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="tabs">
+          <div class="tab active" data-tab="analysis">常规分析</div>
+          <div class="tab" data-tab="dayun">大运分析</div>
+          <div class="tab" data-tab="thinking" style="display:none">思考过程</div>
+        </div>
+        <div class="panel" id="analysisPanel">
+          <div class="result" id="analysis"></div>
+        </div>
+        <div class="panel" id="dayunPanel" style="display:none">
+          <div class="result" id="dayun"></div>
+        </div>
+        <div class="panel" id="thinkingPanel" style="display:none">
+          <div class="result" id="thinking"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">提示：结果仅供娱乐参考，不构成任何保证或建议。</div>
+  </div>
+  <script src="assets/main.js" defer></script>
+</body>
+</html>
